@@ -4,4 +4,6 @@
 
 cd $(dirname $0)
 echo "compile.." $1
-gcc $1.cpp && ./a.out && rm a.out
+g++ $1.cpp
+echo "Done!"
+./a.out && rm a.out
