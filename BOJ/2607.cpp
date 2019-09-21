@@ -11,8 +11,8 @@ using namespace std;
 
 int main() {
 	// stdandard i/o -> file i/o
-	// freopen("in.txt","r",stdin);
-	// freopen("out.txt","w",stdout);
+	freopen("in.txt","r",stdin);
+	freopen("out.txt","w",stdout);
 	
 	// cin optimization
 	ios_base::sync_with_stdio(false);
