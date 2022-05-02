@@ -1,0 +1,5 @@
+def solution(price, money, count):
+    need = price * (count + 1) * count / 2
+    answer = max(need - money, 0)
+
+    return answer
