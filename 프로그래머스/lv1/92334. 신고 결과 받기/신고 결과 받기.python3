@@ -1,0 +1,25 @@
+def solution(id_list, report, k):    
+    report_count_dict = {}
+    mail_list_dict = {}
+    
+    for user in id_list:
+        report_count_dict[user] = 0
+        mail_list_dict[user] = []
+
+    
+    for r in list(set(report)):
+        fromUser, toUser = r.split()
+        
+        report_count_dict[toUser] += 1
+        mail_list_dict[fromUser].append(toUser)
+    
+    
+    answer = []
+    for user in id_list:
+        mail_count = 0
+        for target in mail_list_dict[user]:
+            if report_count_dict[target] >= k:
+                mail_count += 1
+        answer.append(mail_count)
+    
+    return answer
