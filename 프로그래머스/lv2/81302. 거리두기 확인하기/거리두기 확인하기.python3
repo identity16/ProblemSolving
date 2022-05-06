@@ -1,0 +1,56 @@
+PERSON = 'P'
+EMPTY = 'O'
+PARTITION = 'X'
+
+def manhatten_count(place):
+    result = [[0 for _ in range(len(place[0]))] for _ in range(len(place))]
+    
+    for y in range(len(place)):
+        for x in range(len(place[y])):
+            if place[y][x] != PERSON: continue
+            
+            if x > 0:
+                result[y][x-1] += 1
+            
+            if x < len(place[y]) - 1:
+                result[y][x+1] += 1
+                
+            if y > 0:
+                result[y-1][x] += 1
+            
+            if y < len(place) - 1:
+                result[y+1][x] += 1
+
+    return result
+
+def is_safe(place, manhattan):
+    for y in range(len(place)):
+        for x in range(len(place[y])):
+            if place[y][x] != PERSON: continue
+            
+            if manhattan[y][x] > 0:
+                return False
+            
+            if x > 0 and place[y][x-1] is not PARTITION and manhattan[y][x-1] > 1:
+                return False
+            
+            if x < len(place[y]) - 1 and place[y][x+1] is not PARTITION and manhattan[y][x+1] > 1:
+                return False
+                
+            if y > 0 and place[y-1][x] is not PARTITION and manhattan[y-1][x] > 1:
+                return False
+            
+            if y < len(place) - 1 and place[y+1][x] is not PARTITION and manhattan[y+1][x] > 1:
+                return False
+
+    return True
+
+def solution(places):
+    answer = []
+    
+    for place in places:
+        mc = manhatten_count(place)
+        print(mc)
+        answer.append(1 if is_safe(place, mc) else 0)
+
+    return answer
